@@ -3,24 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🥞 鬆餅之城 RP | 專屬 FiveM 伺服器</title>
+    <title>🥞 鬆餅之城 RP | 官方網站</title>
     <style>
         :root {
-            --主色調: #f39c12; /* 蜂蜜橘 */
-            --副色調: #d35400; /* 楓糖棕 */
-            --背景色: #fffcf0; /* 奶油黃背景 */
+            --主色調: #f39c12; 
+            --背景底色: #fffcf5;
+            --文字色: #5d4037;
             --卡片色: #ffffff;
-            --文字色: #4e342e;
-            --陰影: 0 10px 30px rgba(160, 64, 0, 0.08);
         }
 
         body {
             margin: 0;
-            padding: 0;
-            font-family: "Microsoft JhengHei", "PingFang TC", sans-serif;
-            background-color: var(--背景色);
+            font-family: "Microsoft JhengHei", sans-serif;
+            background-color: var(--背景底色);
             color: var(--文字色);
-            overflow-x: hidden;
         }
 
         /* 導覽列 */
@@ -28,71 +24,45 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 8%;
+            padding: 15px 10%;
             background: white;
-            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
-            position: sticky;
-            top: 0;
-            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         }
 
-        .標誌 { font-size: 1.6rem; font-weight: 900; color: var(--主色調); letter-spacing: 1px; }
-        .選單 a { text-decoration: none; color: #7f8c8d; margin-left: 25px; font-weight: bold; transition: 0.3s; }
-        .選單 a:hover { color: var(--主色調); }
-        .加入按鈕 { background: #ff7675; color: white !important; padding: 10px 25px; border-radius: 50px; }
+        .標誌 { font-size: 1.5rem; font-weight: bold; color: var(--主色調); }
+        .加入按鈕 { background: #ff7675; color: white; padding: 8px 20px; border-radius: 50px; text-decoration: none; }
 
-        .主容器 { max-width: 1200px; margin: 50px auto; padding: 0 20px; }
+        /* 主內容區 */
+        .容器 { max-width: 1100px; margin: 40px auto; padding: 0 20px; }
 
-        /* 英雄區 (大標題 + 公告) */
-        .英雄區 { display: grid; grid-template-columns: 1.5fr 1fr; gap: 40px; margin-bottom: 60px; }
-        .介紹文案 h1 { font-size: 4rem; margin: 0; color: var(--主色調); line-height: 1.1; }
-        .介紹文案 h2 { font-size: 1.8rem; color: var(--副色調); margin: 15px 0; }
-        .介紹文案 p { font-size: 1.1rem; color: #7f8c8d; line-height: 1.8; }
-
+        /* 英雄區佈局 */
+        .大標題區 { display: flex; gap: 30px; margin-bottom: 50px; }
+        .主要文案 { flex: 2; }
+        .主要文案 h1 { font-size: 3rem; margin: 0; color: var(--主色調); }
+        
         .公告欄 { 
-            background: white; 
-            padding: 30px; 
-            border-radius: 30px; 
-            box-shadow: var(--陰影);
+            flex: 1; 
+            background: #fff9ed; 
+            padding: 20px; 
+            border-radius: 20px; 
             border-left: 8px solid var(--主色調);
+            font-size: 0.9rem;
         }
-        .公告欄 h3 { margin-top: 0; border-bottom: 2px solid #f1f1f1; padding-bottom: 10px; }
-        .公告清單 { list-style: none; padding: 0; }
-        .公告清單 li { padding: 10px 0; border-bottom: 1px dashed #eee; font-size: 0.95rem; }
 
-        /* 數據列 */
-        .數據列 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 80px; }
-        .數據卡 { background: white; padding: 25px; border-radius: 20px; text-align: center; box-shadow: var(--陰影); }
-        .數據卡 small { color: #999; display: block; margin-bottom: 5px; }
-        .數據卡 strong { font-size: 1.8rem; color: var(--主色調); }
+        /* 狀態卡片區 */
+        .狀態網格 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 50px; }
+        .狀態卡片 { background: white; padding: 20px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.03); }
+        .狀態卡片 small { color: #aaa; }
+        .狀態卡片 p { font-size: 1.5rem; font-weight: bold; margin: 5px 0 0; }
 
         /* 職業介紹區 */
-        .標題列 { text-align: center; margin-bottom: 40px; }
-        .標題列 h2 { font-size: 2.5rem; margin-bottom: 10px; }
-        .標題列 p { color: #999; }
+        .區域標題 { font-size: 1.5rem; margin-bottom: 25px; font-weight: bold; }
+        .職業網格 { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
+        .職業卡片 { background: white; padding: 25px; border-radius: 20px; text-align: center; box-shadow: 0 5px 15px rgba(0,0,0,0.03); }
+        .職業卡片 span { font-size: 2.5rem; display: block; margin-bottom: 10px; }
 
-        .職業網格 { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 25px; }
-        .職業卡片 { 
-            background: white; 
-            padding: 30px; 
-            border-radius: 25px; 
-            text-align: center; 
-            box-shadow: var(--陰影);
-            transition: 0.4s;
-            border: 1px solid transparent;
-        }
-        .職業卡片:hover { transform: translateY(-10px); border-color: var(--主色調); }
-        .職業圖示 { font-size: 3rem; margin-bottom: 15px; display: block; }
-        .職業卡片 h4 { margin: 10px 0; font-size: 1.3rem; }
-        .職業卡片 p { font-size: 0.9rem; color: #7f8c8d; line-height: 1.6; }
-
-        /* 底部 */
-        footer { text-align: center; padding: 60px 0; color: #bdc3c7; font-size: 0.9rem; }
-
-        /* 響應式手機排版 */
-        @media (max-width: 900px) {
-            .英雄區, .數據列 { grid-template-columns: 1fr; }
-            .介紹文案 h1 { font-size: 2.8rem; }
+        @media (max-width: 768px) {
+            .大標題區, .狀態網格 { flex-direction: column; grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -100,87 +70,41 @@
 
     <nav>
         <div class="標誌">🥞 鬆餅之城 RP</div>
-        <div class="選單">
-            <a href="#">城市導覽</a>
-            <a href="#">法律規範</a>
-            <a href="#">贊助支持</a>
-            <a href="#" class="加入按鈕">加入 DISCORD</a>
-        </div>
+        <a href="#" class="加入按鈕">加入 Discord</a>
     </nav>
 
-    <div class="主容器">
-        <header class="英雄區">
-            <div class="介紹文案">
+    <div class="容器">
+        <div class="大標題區">
+            <div class="主要文案">
                 <h1>🥞 鬆餅之城</h1>
-                <h2>每一層人生，都值得細細品味</h2>
-                <p>這是一座以「生活」與「工業」為核心的 FiveM 伺服器。我們不追求極端的對立，而是重視市民之間的溫馨互動。在這裡，你可以選擇平凡的幸福，也可以選擇不凡的成就。</p>
-                <div style="margin-top: 30px;">
-                    <a href="#" style="background: var(--主色調); color: white; padding: 15px 35px; border-radius: 50px; text-decoration: none; font-weight: bold; box-shadow: 0 10px 20px rgba(243, 156, 18, 0.2);">立即連線伺服器</a>
-                </div>
+                <p style="font-size: 1.2rem; color: #888;">每一層人生，都值得細細品味</p>
+                <p>在這裡，我們不追求快速的節奏，而是像煎鬆餅一樣，需要一點耐心與熱情。想慢慢生活也可以，想努力賺錢也可以。</p>
             </div>
             <div class="公告欄">
-                <h3>🍯 城市公告</h3>
-                <ul class="公告清單">
-                    <li>✨ 伺服器 2.0 版本正式上線</li>
+                <strong>🍯 城市公告</strong>
+                <ul>
+                    <li>🚨 警察局、醫護體系招募中</li>
                     <li>🛠️ 修車廠全新改裝套件開放</li>
-                    <li>🚨 招募中：警察局與醫護體系</li>
-                    <li>🎁 本週末舉辦「楓糖嘉年華」</li>
+                    <li>🎁 本週末舉辦楓糖嘉年華</li>
                 </ul>
             </div>
-        </header>
+        </div>
 
-        <section class="數據列">
-            <div class="數據卡">
-                <small>伺服器狀態</small>
-                <strong style="color: #2ecc71;">穩定運行</strong>
-            </div>
-            <div class="數據卡">
-                <small>當前市民</small>
-                <strong>48 / 128</strong>
-            </div>
-            <div class="數據卡">
-                <small>市民滿意度</small>
-                <strong>99%</strong>
-            </div>
-        </section>
+        <div class="狀態網格">
+            <div class="狀態卡片"><small>伺服器狀態</small><p style="color: #2ecc71;">穩定運行</p></div>
+            <div class="狀態卡片"><small>當前市民</small><p>45 / 128</p></div>
+            <div class="狀態卡片"><small>Discord</small><p>1,200+</p></div>
+        </div>
 
-        <section class="標題列">
-            <h2>多元職涯選擇</h2>
-            <p>在鬆餅之城，每個角色都是不可或缺的齒輪</p>
-        </section>
-
-        <section class="職業網格">
-            <div class="職業卡片">
-                <span class="職業圖示">👮</span>
-                <h4>警察局</h4>
-                <p>維護城市秩序的防線，打擊犯罪，讓每位市民都能安心睡個好覺。</p>
-            </div>
-            <div class="職業卡片">
-                <span class="職業圖示">🚑</span>
-                <h4>醫護體系</h4>
-                <p>與時間賽跑的守護者，提供最即時的救護服務與專業醫療關懷。</p>
-            </div>
-            <div class="職業卡片">
-                <span class="職業圖示">🛠️</span>
-                <h4>專業修車廠</h4>
-                <p>車輛性能的魔術師。無論是日常保養還是極限改裝，交給我們就對了。</p>
-            </div>
-            <div class="職業卡片">
-                <span class="職業圖示">🍴</span>
-                <h4>特色餐廳</h4>
-                <p>城市的靈魂補給站。用溫馨的餐點與招牌鬆餅，療癒每一顆疲憊的心。</p>
-            </div>
-            <div class="職業卡片">
-                <span class="職業圖示">🏛️</span>
-                <h4>市政公職</h4>
-                <p>推動城市文明進步的推手。處理政務、法律仲裁，為市民謀福利。</p>
-            </div>
-        </section>
+        <div class="區域標題">📍 職業體系</div>
+        <div class="職業網格">
+            <div class="職業卡片"><span>👮</span><h4>警察局</h4><p>維護治安、正義守護</p></div>
+            <div class="職業卡片"><span>🚑</span><h4>醫護體系</h4><p>守護生命、專業救援</p></div>
+            <div class="職業卡片"><span>🛠️</span><h4>修車廠</h4><p>改裝藝術、專業修護</p></div>
+            <div class="職業卡片"><span>🍴</span><h4>特色餐廳</h4><p>美食傳遞、市民補給</p></div>
+            <div class="職業卡片"><span>🏛️</span><h4>市政公職</h4><p>城市行政、法律仲裁</p></div>
+        </div>
     </div>
-
-    <footer>
-        &copy; 2024 🥞 鬆餅之城 RP | 致力於最優質的 FiveM 角色扮演體驗
-    </footer>
 
 </body>
 </html>
